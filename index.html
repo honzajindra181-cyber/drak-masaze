@@ -1,14 +1,321 @@
+```html
 <!DOCTYPE html>
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Drak Masáže</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: #f5f5f5;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #171717;
+            padding: 20px 40px;
+            border-bottom: 1px solid #333;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #d6a84f;
+        }
+
+        nav a {
+            color: #ddd;
+            text-decoration: none;
+            margin-left: 25px;
+        }
+
+        nav a:hover {
+            color: #d6a84f;
+        }
+
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+
+            background:
+                radial-gradient(circle at center, #302616 0%, #111 55%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            margin-bottom: 20px;
+            color: #d6a84f;
+        }
+
+        .hero p {
+            font-size: 22px;
+            color: #ddd;
+            margin-bottom: 35px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 14px 30px;
+            background: #d6a84f;
+            color: #111;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+        }
+
+        .button:hover {
+            background: #e5bd69;
+        }
+
+        section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 80px 20px;
+        }
+
+        section h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #d6a84f;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: #1b1b1b;
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            text-align: center;
+        }
+
+        .card h3 {
+            color: #d6a84f;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #bbb;
+        }
+
+        .contact {
+            text-align: center;
+            background: #171717;
+            max-width: none;
+        }
+
+        .contact-content {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #0b0b0b;
+            color: #777;
+        }
+
+        @media (max-width: 700px) {
+
+            header {
+                padding: 20px;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 8px;
+            }
+
+            .hero h1 {
+                font-size: 44px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-    <h1>Drak Masáže</h1>
-    <p>Web se připravuje.</p>
+    <header>
+        <nav>
+            <div class="logo">🐉 Drak Masáže</div>
+
+            <div>
+                <a href="#o-masazich">Masáže</a>
+                <a href="#cenik">Ceník</a>
+                <a href="#kontakt">Kontakt</a>
+            </div>
+        </nav>
+    </header>
+
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <h1>Drak Masáže</h1>
+
+                <p>
+                    Odpočinek, regenerace a péče o vaše tělo.
+                </p>
+
+                <a href="#kontakt" class="button">
+                    Objednat se
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <section id="o-masazich">
+
+            <h2>Naše masáže</h2>
+
+            <div class="cards">
+
+                <div class="card">
+                    <h3>Relaxační masáž</h3>
+
+                    <p>
+                        Příjemná masáž pro uvolnění těla,
+                        odpočinek a celkové zklidnění.
+                    </p>
+                </div>
+
+
+                <div class="card">
+                    <h3>Sportovní masáž</h3>
+
+                    <p>
+                        Intenzivnější masáž zaměřená
+                        na namáhané svaly a regeneraci.
+                    </p>
+                </div>
+
+
+                <div class="card">
+                    <h3>Masáž zad</h3>
+
+                    <p>
+                        Zaměření na oblast zad, šíje
+                        a ramen po náročném dni.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section id="cenik">
+
+            <h2>Ceník</h2>
+
+            <div class="cards">
+
+                <div class="card">
+                    <h3>30 minut</h3>
+                    <p>___ Kč</p>
+                </div>
+
+                <div class="card">
+                    <h3>60 minut</h3>
+                    <p>___ Kč</p>
+                </div>
+
+                <div class="card">
+                    <h3>90 minut</h3>
+                    <p>___ Kč</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="contact" id="kontakt">
+
+            <div class="contact-content">
+
+                <h2>Kontakt</h2>
+
+                <p>
+                    Máte zájem o masáž nebo se chcete objednat?
+                </p>
+
+                <br>
+
+                <p>
+                    📞 Telefon: <strong>XXX XXX XXX</strong>
+                </p>
+
+                <p>
+                    ✉️ E-mail: <strong>email@example.cz</strong>
+                </p>
+
+                <br>
+
+                <a href="tel:XXXXXXXXX" class="button">
+                    Zavolat a objednat se
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        © 2026 Drak Masáže
+    </footer>
 
 </body>
 </html>
+```
