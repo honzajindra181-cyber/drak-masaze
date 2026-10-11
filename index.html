@@ -1,34 +1,53 @@
-```html
 <!DOCTYPE html>
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Drak Masáže</title>
+    <title>Drak Masáže – rukama i laskavostí</title>
+
+    <meta name="description"
+          content="Drak Masáže – trochu jiný pohled na regeneraci a péči o vaše tělo.">
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #111;
-            color: #f5f5f5;
-            line-height: 1.6;
+        html {
+            scroll-behavior: smooth;
         }
 
+        body {
+            font-family: Arial, sans-serif;
+            color: white;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(110,255,255,.22), transparent 35%),
+                radial-gradient(circle at 85% 75%, rgba(0,100,120,.45), transparent 40%),
+                linear-gradient(135deg, #006f78, #008f99 45%, #005b68);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ---------------- NAVIGACE ---------------- */
+
         header {
-            background: #171717;
-            padding: 20px 40px;
-            border-bottom: 1px solid #333;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 18px 6%;
+            background: rgba(0, 70, 80, .45);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,.15);
         }
 
         nav {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: auto;
             display: flex;
             justify-content: space-between;
@@ -36,286 +55,607 @@
         }
 
         .logo {
-            font-size: 26px;
-            font-weight: bold;
-            color: #d6a84f;
+            font-family: Georgia, serif;
+            font-size: 28px;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            font-size: 14px;
+            display: block;
+            letter-spacing: 3px;
+            opacity: .8;
+            margin-top: -3px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
         }
 
         nav a {
-            color: #ddd;
+            color: white;
             text-decoration: none;
-            margin-left: 25px;
+            font-size: 15px;
+            transition: .3s;
         }
 
         nav a:hover {
-            color: #d6a84f;
+            opacity: .65;
         }
 
-        .hero {
-            min-height: 70vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 60px 20px;
+        /* ---------------- HLAVNÍ SEKCE ---------------- */
 
-            background:
-                radial-gradient(circle at center, #302616 0%, #111 55%);
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 120px 7% 80px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            border: 2px solid rgba(180,255,255,.22);
+            border-radius: 50%;
+            left: -330px;
+            top: 100px;
+            transform: rotate(-20deg);
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 900px;
+            height: 180px;
+            border-top: 3px solid rgba(180,255,255,.22);
+            border-radius: 50%;
+            bottom: 30px;
+            left: -100px;
+            transform: rotate(8deg);
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            align-items: center;
+            gap: 60px;
+            position: relative;
+            z-index: 2;
         }
 
-        .hero h1 {
-            font-size: 64px;
+        .hero-text {
+            max-width: 700px;
+        }
+
+        .small-title {
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-size: 14px;
+            opacity: .8;
             margin-bottom: 20px;
-            color: #d6a84f;
         }
 
-        .hero p {
-            font-size: 22px;
-            color: #ddd;
-            margin-bottom: 35px;
+        h1 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-weight: normal;
+            font-size: clamp(60px, 9vw, 110px);
+            line-height: .9;
+            margin-bottom: 25px;
+        }
+
+        .subtitle {
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .description {
+            font-size: 17px;
+            line-height: 1.7;
+            max-width: 600px;
+            opacity: .9;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 35px;
+            flex-wrap: wrap;
         }
 
         .button {
-            display: inline-block;
-            padding: 14px 30px;
-            background: #d6a84f;
-            color: #111;
+            padding: 14px 27px;
+            border-radius: 30px;
             text-decoration: none;
+            color: #006d77;
+            background: white;
             font-weight: bold;
-            border-radius: 6px;
+            transition: .3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,.15);
         }
 
         .button:hover {
-            background: #e5bd69;
+            transform: translateY(-3px);
         }
+
+        .button-outline {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,.6);
+            color: white;
+        }
+
+        /* ---------------- DRAK ---------------- */
+
+        .dragon {
+            min-height: 480px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .dragon-circle {
+            width: 390px;
+            height: 390px;
+            border: 2px solid rgba(255,255,255,.35);
+            border-radius: 50%;
+            position: relative;
+            box-shadow:
+                0 0 70px rgba(120,255,255,.15),
+                inset 0 0 70px rgba(120,255,255,.08);
+        }
+
+        .dragon-circle::before {
+            content: "龍";
+            position: absolute;
+            font-family: Georgia, serif;
+            font-size: 250px;
+            color: rgba(255,255,255,.9);
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -52%);
+            font-weight: normal;
+        }
+
+        .dragon-circle::after {
+            content: "";
+            position: absolute;
+            width: 470px;
+            height: 120px;
+            border-top: 2px solid rgba(180,255,255,.35);
+            border-radius: 50%;
+            left: -40px;
+            top: 140px;
+            transform: rotate(-25deg);
+        }
+
+        /* ---------------- SECTIONS ---------------- */
 
         section {
+            padding: 100px 7%;
+            position: relative;
+        }
+
+        .section-inner {
             max-width: 1100px;
             margin: auto;
-            padding: 80px 20px;
         }
 
-        section h2 {
+        .section-title {
             text-align: center;
-            font-size: 36px;
-            margin-bottom: 40px;
-            color: #d6a84f;
+            font-family: Georgia, serif;
+            font-size: 48px;
+            font-weight: normal;
+            margin-bottom: 15px;
         }
 
-        .cards {
+        .section-subtitle {
+            text-align: center;
+            opacity: .75;
+            margin-bottom: 55px;
+        }
+
+        /* ---------------- SLUŽBY ---------------- */
+
+        .services {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 25px;
         }
 
         .card {
-            background: #1b1b1b;
-            padding: 30px;
-            border-radius: 10px;
-            border: 1px solid #333;
-            text-align: center;
+            padding: 35px 28px;
+            border-radius: 25px;
+            background: rgba(255,255,255,.10);
+            border: 1px solid rgba(255,255,255,.18);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 15px 40px rgba(0,0,0,.12);
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            background: rgba(255,255,255,.14);
         }
 
         .card h3 {
-            color: #d6a84f;
+            font-family: Georgia, serif;
+            font-size: 25px;
+            font-weight: normal;
             margin-bottom: 15px;
         }
 
         .card p {
-            color: #bbb;
+            line-height: 1.7;
+            opacity: .8;
         }
 
-        .contact {
-            text-align: center;
-            background: #171717;
-            max-width: none;
-        }
+        /* ---------------- CENÍK ---------------- */
 
-        .contact-content {
-            max-width: 700px;
+        .price-list {
+            max-width: 750px;
             margin: auto;
         }
 
-        footer {
-            text-align: center;
-            padding: 25px;
-            background: #0b0b0b;
-            color: #777;
+        .price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 25px;
+            margin-bottom: 12px;
+            border-radius: 15px;
+            background: rgba(255,255,255,.09);
+            border: 1px solid rgba(255,255,255,.13);
         }
 
-        @media (max-width: 700px) {
+        .price-name {
+            font-family: Georgia, serif;
+            font-size: 19px;
+        }
+
+        .price-value {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* ---------------- KONTAKT ---------------- */
+
+        .contact {
+            text-align: center;
+            padding-bottom: 120px;
+        }
+
+        .contact-box {
+            max-width: 800px;
+            margin: auto;
+            padding: 50px 30px;
+            border-radius: 30px;
+            background: rgba(255,255,255,.10);
+            border: 1px solid rgba(255,255,255,.18);
+            backdrop-filter: blur(15px);
+        }
+
+        .contact-box p {
+            margin: 12px 0;
+            font-size: 18px;
+        }
+
+        .contact-box a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .contact-box a:hover {
+            text-decoration: underline;
+        }
+
+        /* ---------------- PATIČKA ---------------- */
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid rgba(255,255,255,.12);
+            opacity: .65;
+            font-size: 14px;
+        }
+
+        /* ---------------- MOBIL ---------------- */
+
+        @media (max-width: 800px) {
 
             header {
-                padding: 20px;
+                padding: 15px 5%;
             }
 
-            nav {
-                flex-direction: column;
-                gap: 15px;
+            nav ul {
+                gap: 12px;
             }
 
             nav a {
-                margin: 0 8px;
+                font-size: 12px;
             }
 
-            .hero h1 {
-                font-size: 44px;
+            .hero {
+                padding-top: 130px;
             }
 
-            .hero p {
-                font-size: 18px;
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
 
-            .cards {
+            .description {
+                margin: auto;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .dragon {
+                min-height: 330px;
+            }
+
+            .dragon-circle {
+                width: 280px;
+                height: 280px;
+            }
+
+            .dragon-circle::before {
+                font-size: 180px;
+            }
+
+            .dragon-circle::after {
+                width: 340px;
+                left: -30px;
+            }
+
+            .services {
                 grid-template-columns: 1fr;
             }
+
+            .section-title {
+                font-size: 38px;
+            }
+
+            .price {
+                padding: 18px;
+            }
         }
+
     </style>
 </head>
 
 <body>
 
-    <header>
-        <nav>
-            <div class="logo">🐉 Drak Masáže</div>
+<header>
+    <nav>
+        <div class="logo">
+            Drak
+            <span>MASÁŽE</span>
+        </div>
 
-            <div>
-                <a href="#o-masazich">Masáže</a>
-                <a href="#cenik">Ceník</a>
-                <a href="#kontakt">Kontakt</a>
+        <ul>
+            <li><a href="#uvod">Úvod</a></li>
+            <li><a href="#sluzby">Služby</a></li>
+            <li><a href="#cenik">Ceník</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+<!-- ÚVOD -->
+
+<section class="hero" id="uvod">
+
+    <div class="hero-content">
+
+        <div class="hero-text">
+
+            <div class="small-title">
+                Drak Masáže
             </div>
-        </nav>
-    </header>
 
+            <h1>Masáže</h1>
 
-    <main>
+            <div class="subtitle">
+                rukama i laskavostí
+            </div>
 
-        <section class="hero">
+            <p class="description">
+                Trochu jiný pohled na regeneraci a péči o vaše tělo.
+                Dopřejte si chvíli klidu, uvolnění a péče, kterou si zasloužíte.
+            </p>
 
-            <div class="hero-content">
-
-                <h1>Drak Masáže</h1>
-
-                <p>
-                    Odpočinek, regenerace a péče o vaše tělo.
-                </p>
-
+            <div class="buttons">
                 <a href="#kontakt" class="button">
                     Objednat se
                 </a>
 
-            </div>
-
-        </section>
-
-
-        <section id="o-masazich">
-
-            <h2>Naše masáže</h2>
-
-            <div class="cards">
-
-                <div class="card">
-                    <h3>Relaxační masáž</h3>
-
-                    <p>
-                        Příjemná masáž pro uvolnění těla,
-                        odpočinek a celkové zklidnění.
-                    </p>
-                </div>
-
-
-                <div class="card">
-                    <h3>Sportovní masáž</h3>
-
-                    <p>
-                        Intenzivnější masáž zaměřená
-                        na namáhané svaly a regeneraci.
-                    </p>
-                </div>
-
-
-                <div class="card">
-                    <h3>Masáž zad</h3>
-
-                    <p>
-                        Zaměření na oblast zad, šíje
-                        a ramen po náročném dni.
-                    </p>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <section id="cenik">
-
-            <h2>Ceník</h2>
-
-            <div class="cards">
-
-                <div class="card">
-                    <h3>30 minut</h3>
-                    <p>___ Kč</p>
-                </div>
-
-                <div class="card">
-                    <h3>60 minut</h3>
-                    <p>___ Kč</p>
-                </div>
-
-                <div class="card">
-                    <h3>90 minut</h3>
-                    <p>___ Kč</p>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <section class="contact" id="kontakt">
-
-            <div class="contact-content">
-
-                <h2>Kontakt</h2>
-
-                <p>
-                    Máte zájem o masáž nebo se chcete objednat?
-                </p>
-
-                <br>
-
-                <p>
-                    📞 Telefon: <strong>XXX XXX XXX</strong>
-                </p>
-
-                <p>
-                    ✉️ E-mail: <strong>email@example.cz</strong>
-                </p>
-
-                <br>
-
-                <a href="tel:XXXXXXXXX" class="button">
-                    Zavolat a objednat se
+                <a href="#sluzby" class="button button-outline">
+                    Nabídka masáží
                 </a>
-
             </div>
 
-        </section>
-
-    </main>
+        </div>
 
 
-    <footer>
-        © 2026 Drak Masáže
-    </footer>
+        <div class="dragon">
+            <div class="dragon-circle"></div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SLUŽBY -->
+
+<section id="sluzby">
+
+    <div class="section-inner">
+
+        <h2 class="section-title">
+            Nabídka masáží
+        </h2>
+
+        <p class="section-subtitle">
+            Péče přizpůsobená vašim potřebám
+        </p>
+
+
+        <div class="services">
+
+            <div class="card">
+                <h3>Relaxační masáž</h3>
+
+                <p>
+                    Jemná masáž zaměřená na uvolnění napětí,
+                    odpočinek a celkovou regeneraci těla.
+                </p>
+            </div>
+
+
+            <div class="card">
+                <h3>Regenerační masáž</h3>
+
+                <p>
+                    Intenzivnější péče pro unavené a namáhané
+                    svaly po práci, sportu nebo každodenní zátěži.
+                </p>
+            </div>
+
+
+            <div class="card">
+                <h3>Masáž na míru</h3>
+
+                <p>
+                    Každé tělo je jiné. Společně vybereme
+                    způsob péče, který bude nejlépe vyhovovat právě vám.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CENÍK -->
+
+<section id="cenik">
+
+    <div class="section-inner">
+
+        <h2 class="section-title">
+            Ceník
+        </h2>
+
+        <p class="section-subtitle">
+            Jednoduše a přehledně
+        </p>
+
+
+        <div class="price-list">
+
+            <div class="price">
+                <span class="price-name">
+                    Masáž 30 minut
+                </span>
+
+                <span class="price-value">
+                    XXX Kč
+                </span>
+            </div>
+
+
+            <div class="price">
+                <span class="price-name">
+                    Masáž 60 minut
+                </span>
+
+                <span class="price-value">
+                    XXX Kč
+                </span>
+            </div>
+
+
+            <div class="price">
+                <span class="price-name">
+                    Masáž 90 minut
+                </span>
+
+                <span class="price-value">
+                    XXX Kč
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- KONTAKT -->
+
+<section class="contact" id="kontakt">
+
+    <div class="section-inner">
+
+        <h2 class="section-title">
+            Objednejte se
+        </h2>
+
+        <p class="section-subtitle">
+            Budu se na vás těšit
+        </p>
+
+
+        <div class="contact-box">
+
+            <p>
+                📧
+                <a href="mailto:drak-masaze@seznam.cz">
+                    drak-masaze@seznam.cz
+                </a>
+            </p>
+
+            <p>
+                ☎
+                <a href="tel:+420739846091">
+                    739 846 091
+                </a>
+            </p>
+
+            <p>
+                IČO: 19502150
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+    © 2026 Drak Masáže
+</footer>
+
 
 </body>
 </html>
-```
