@@ -11,10 +11,14 @@
 
     <style>
 
+        /* =====================================================
+           ZÁKLAD
+        ===================================================== */
+
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         html {
@@ -22,228 +26,396 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #ffffff;
+
             background:
-                radial-gradient(circle at 15% 20%, rgba(110,255,255,.22), transparent 35%),
-                radial-gradient(circle at 85% 75%, rgba(0,100,120,.45), transparent 40%),
-                linear-gradient(135deg, #006f78, #008f99 45%, #005b68);
+                radial-gradient(
+                    ellipse at 20% 20%,
+                    rgba(65, 245, 245, 0.22),
+                    transparent 38%
+                ),
+                radial-gradient(
+                    ellipse at 85% 65%,
+                    rgba(0, 160, 175, 0.25),
+                    transparent 42%
+                ),
+                linear-gradient(
+                    135deg,
+                    #005b66 0%,
+                    #008b96 45%,
+                    #00636f 100%
+                );
+
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* ---------------- NAVIGACE ---------------- */
+        a {
+            color: inherit;
+        }
+
+
+        /* =====================================================
+           SVĚTELNÉ VLNY – HLAVNÍ DEKORACE POZADÍ
+        ===================================================== */
+
+        .background-waves {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .wave {
+            position: absolute;
+            border: 2px solid rgba(190, 255, 255, 0.28);
+            border-radius: 50%;
+            filter: blur(0.2px);
+            box-shadow:
+                0 0 12px rgba(120, 255, 255, 0.15),
+                0 0 35px rgba(120, 255, 255, 0.08);
+        }
+
+        .wave-1 {
+            width: 1250px;
+            height: 430px;
+            left: -300px;
+            top: 70px;
+            transform: rotate(-19deg);
+        }
+
+        .wave-2 {
+            width: 1450px;
+            height: 500px;
+            left: -420px;
+            top: 210px;
+            transform: rotate(-19deg);
+            opacity: .75;
+        }
+
+        .wave-3 {
+            width: 1650px;
+            height: 550px;
+            left: -480px;
+            top: 390px;
+            transform: rotate(-18deg);
+            opacity: .52;
+        }
+
+        .wave-4 {
+            width: 1750px;
+            height: 430px;
+            right: -650px;
+            top: 600px;
+            transform: rotate(14deg);
+            opacity: .45;
+        }
+
+        .wave-5 {
+            width: 1500px;
+            height: 390px;
+            right: -550px;
+            top: 780px;
+            transform: rotate(14deg);
+            opacity: .35;
+        }
+
+        /* Spodní vlny */
+
+        .bottom-wave {
+            position: absolute;
+            width: 1800px;
+            height: 420px;
+            left: -350px;
+            bottom: -80px;
+            border-top: 3px solid rgba(210, 255, 255, .32);
+            border-radius: 50%;
+            transform: rotate(7deg);
+            box-shadow:
+                0 -5px 20px rgba(140, 255, 255, .10);
+        }
+
+        .bottom-wave-2 {
+            position: absolute;
+            width: 1600px;
+            height: 350px;
+            left: -250px;
+            bottom: -10px;
+            border-top: 2px solid rgba(190, 255, 255, .22);
+            border-radius: 50%;
+            transform: rotate(8deg);
+        }
+
+
+        /* =====================================================
+           NAVIGACE
+        ===================================================== */
 
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
+
+            padding: 17px 6%;
+
+            background: rgba(0, 65, 73, .55);
+            backdrop-filter: blur(14px);
+
+            border-bottom: 1px solid rgba(255,255,255,.14);
+
             z-index: 1000;
-            padding: 18px 6%;
-            background: rgba(0, 70, 80, .45);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255,255,255,.15);
         }
 
         nav {
             max-width: 1200px;
             margin: auto;
+
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .logo {
-            font-family: Georgia, serif;
-            font-size: 28px;
-            font-weight: normal;
+        .nav-logo {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 27px;
             letter-spacing: 1px;
         }
 
-        .logo span {
-            font-size: 14px;
+        .nav-logo-small {
             display: block;
-            letter-spacing: 3px;
-            opacity: .8;
-            margin-top: -3px;
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            letter-spacing: 4px;
+            opacity: .7;
+            margin-top: 2px;
         }
 
         nav ul {
             list-style: none;
             display: flex;
-            gap: 30px;
+            gap: 35px;
         }
 
         nav a {
-            color: white;
             text-decoration: none;
             font-size: 15px;
+            opacity: .9;
             transition: .3s;
         }
 
         nav a:hover {
-            opacity: .65;
+            opacity: .55;
         }
 
-        /* ---------------- HLAVNÍ SEKCE ---------------- */
+
+        /* =====================================================
+           HLAVNÍ ÚVOD
+        ===================================================== */
 
         .hero {
             min-height: 100vh;
+
             display: flex;
             align-items: center;
-            justify-content: center;
+
+            padding:
+                140px 7%
+                100px;
+
             position: relative;
-            padding: 120px 7% 80px;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            width: 700px;
-            height: 700px;
-            border: 2px solid rgba(180,255,255,.22);
-            border-radius: 50%;
-            left: -330px;
-            top: 100px;
-            transform: rotate(-20deg);
-        }
-
-        .hero::after {
-            content: "";
-            position: absolute;
-            width: 900px;
-            height: 180px;
-            border-top: 3px solid rgba(180,255,255,.22);
-            border-radius: 50%;
-            bottom: 30px;
-            left: -100px;
-            transform: rotate(8deg);
         }
 
         .hero-content {
-            max-width: 1200px;
             width: 100%;
+            max-width: 1200px;
+            margin: auto;
+
             display: grid;
-            grid-template-columns: 1.1fr .9fr;
+            grid-template-columns: 1fr 1fr;
+
             align-items: center;
-            gap: 60px;
+            gap: 50px;
+        }
+
+        .hero-text {
             position: relative;
             z-index: 2;
         }
 
-        .hero-text {
-            max-width: 700px;
-        }
-
-        .small-title {
+        .eyebrow {
             text-transform: uppercase;
             letter-spacing: 5px;
-            font-size: 14px;
-            opacity: .8;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            font-family: Georgia, "Times New Roman", serif;
-            font-weight: normal;
-            font-size: clamp(60px, 9vw, 110px);
-            line-height: .9;
+            font-size: 13px;
+            opacity: .72;
             margin-bottom: 25px;
         }
 
-        .subtitle {
-            font-family: Georgia, serif;
-            font-style: italic;
-            font-size: 24px;
-            margin-bottom: 12px;
+        .hero h1 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(70px, 9vw, 125px);
+            line-height: .85;
+            font-weight: normal;
+            margin-bottom: 28px;
+
+            text-shadow:
+                0 5px 25px rgba(0,0,0,.10);
         }
 
-        .description {
-            font-size: 17px;
-            line-height: 1.7;
-            max-width: 600px;
-            opacity: .9;
+        .tagline {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(21px, 2.5vw, 30px);
+            font-style: italic;
+            margin-bottom: 18px;
         }
+
+        .hero-description {
+            max-width: 580px;
+
+            font-size: 17px;
+            line-height: 1.75;
+
+            opacity: .86;
+        }
+
+
+        /* =====================================================
+           TLAČÍTKA
+        ===================================================== */
 
         .buttons {
             display: flex;
             gap: 15px;
-            margin-top: 35px;
             flex-wrap: wrap;
+            margin-top: 35px;
         }
 
         .button {
-            padding: 14px 27px;
-            border-radius: 30px;
-            text-decoration: none;
-            color: #006d77;
+            display: inline-block;
+
+            padding: 15px 30px;
+
+            border-radius: 40px;
+
             background: white;
+            color: #006d77;
+
+            text-decoration: none;
             font-weight: bold;
-            transition: .3s;
-            box-shadow: 0 10px 30px rgba(0,0,0,.15);
+
+            box-shadow:
+                0 10px 35px rgba(0,0,0,.15);
+
+            transition:
+                transform .3s,
+                box-shadow .3s;
         }
 
         .button:hover {
-            transform: translateY(-3px);
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,.22);
         }
 
         .button-outline {
             background: transparent;
-            border: 1px solid rgba(255,255,255,.6);
             color: white;
+
+            border: 1px solid rgba(255,255,255,.6);
+
+            box-shadow: none;
         }
 
-        /* ---------------- DRAK ---------------- */
 
-        .dragon {
-            min-height: 480px;
+        /* =====================================================
+           LOGO
+        ===================================================== */
+
+        .hero-logo {
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+
             position: relative;
+
+            min-height: 480px;
         }
 
-        .dragon-circle {
-            width: 390px;
-            height: 390px;
-            border: 2px solid rgba(255,255,255,.35);
+        .logo-ring {
+            width: min(460px, 80vw);
+            height: min(460px, 80vw);
+
+            border: 1px solid rgba(255,255,255,.35);
+
             border-radius: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
             position: relative;
+
             box-shadow:
-                0 0 70px rgba(120,255,255,.15),
-                inset 0 0 70px rgba(120,255,255,.08);
+                0 0 50px rgba(150,255,255,.12),
+                inset 0 0 60px rgba(150,255,255,.08);
         }
 
-        .dragon-circle::before {
-            content: "龍";
-            position: absolute;
-            font-family: Georgia, serif;
-            font-size: 250px;
-            color: rgba(255,255,255,.9);
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -52%);
-            font-weight: normal;
-        }
-
-        .dragon-circle::after {
+        .logo-ring::before {
             content: "";
+
             position: absolute;
-            width: 470px;
-            height: 120px;
-            border-top: 2px solid rgba(180,255,255,.35);
+
+            width: 115%;
+            height: 40%;
+
+            border-top: 2px solid rgba(200,255,255,.35);
+
             border-radius: 50%;
-            left: -40px;
-            top: 140px;
-            transform: rotate(-25deg);
+
+            transform: rotate(-24deg);
+
+            box-shadow:
+                0 -2px 15px rgba(180,255,255,.18);
         }
 
-        /* ---------------- SECTIONS ---------------- */
+        .logo-ring::after {
+            content: "";
 
-        section {
-            padding: 100px 7%;
+            position: absolute;
+
+            width: 120%;
+            height: 45%;
+
+            border-bottom: 2px solid rgba(200,255,255,.22);
+
+            border-radius: 50%;
+
+            transform: rotate(-24deg);
+        }
+
+        .hero-logo img {
+            width: 72%;
+            max-width: 350px;
+            height: auto;
+
+            position: relative;
+            z-index: 2;
+
+            filter:
+                drop-shadow(0 0 12px rgba(220,255,255,.25))
+                drop-shadow(0 8px 20px rgba(0,0,0,.12));
+        }
+
+
+        /* =====================================================
+           SEKCÍ
+        ===================================================== */
+
+        section:not(.hero) {
+            padding: 120px 7%;
             position: relative;
         }
 
@@ -254,19 +426,29 @@
 
         .section-title {
             text-align: center;
-            font-family: Georgia, serif;
-            font-size: 48px;
+
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(40px, 5vw, 58px);
+
             font-weight: normal;
+
             margin-bottom: 15px;
         }
 
         .section-subtitle {
             text-align: center;
-            opacity: .75;
+
+            opacity: .72;
+
+            font-size: 16px;
+
             margin-bottom: 55px;
         }
 
-        /* ---------------- SLUŽBY ---------------- */
+
+        /* =====================================================
+           SLUŽBY
+        ===================================================== */
 
         .services {
             display: grid;
@@ -275,48 +457,96 @@
         }
 
         .card {
-            padding: 35px 28px;
+            padding: 38px 30px;
+
             border-radius: 25px;
-            background: rgba(255,255,255,.10);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.14),
+                    rgba(255,255,255,.06)
+                );
+
             border: 1px solid rgba(255,255,255,.18);
+
             backdrop-filter: blur(12px);
-            box-shadow: 0 15px 40px rgba(0,0,0,.12);
-            transition: .3s;
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,.10);
+
+            transition: .35s;
         }
 
         .card:hover {
-            transform: translateY(-6px);
-            background: rgba(255,255,255,.14);
+            transform: translateY(-8px);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.19),
+                    rgba(255,255,255,.08)
+                );
+        }
+
+        .card-number {
+            font-family: Georgia, serif;
+
+            font-size: 18px;
+
+            opacity: .5;
+
+            margin-bottom: 25px;
         }
 
         .card h3 {
-            font-family: Georgia, serif;
-            font-size: 25px;
+            font-family: Georgia, "Times New Roman", serif;
+
+            font-size: 27px;
+
             font-weight: normal;
-            margin-bottom: 15px;
+
+            margin-bottom: 17px;
         }
 
         .card p {
-            line-height: 1.7;
-            opacity: .8;
+            line-height: 1.75;
+            opacity: .78;
         }
 
-        /* ---------------- CENÍK ---------------- */
+
+        /* =====================================================
+           CENÍK
+        ===================================================== */
 
         .price-list {
-            max-width: 750px;
+            max-width: 780px;
             margin: auto;
         }
 
         .price {
             display: flex;
+
             justify-content: space-between;
             align-items: center;
-            padding: 22px 25px;
+
+            padding: 22px 27px;
+
             margin-bottom: 12px;
-            border-radius: 15px;
+
+            border-radius: 17px;
+
             background: rgba(255,255,255,.09);
+
             border: 1px solid rgba(255,255,255,.13);
+
+            backdrop-filter: blur(8px);
+
+            transition: .3s;
+        }
+
+        .price:hover {
+            background: rgba(255,255,255,.14);
         }
 
         .price-name {
@@ -325,61 +555,95 @@
         }
 
         .price-value {
-            font-size: 20px;
+            font-size: 19px;
             font-weight: bold;
         }
 
-        /* ---------------- KONTAKT ---------------- */
+
+        /* =====================================================
+           KONTAKT
+        ===================================================== */
 
         .contact {
             text-align: center;
-            padding-bottom: 120px;
         }
 
         .contact-box {
-            max-width: 800px;
+            max-width: 780px;
+
             margin: auto;
+
             padding: 50px 30px;
+
             border-radius: 30px;
-            background: rgba(255,255,255,.10);
-            border: 1px solid rgba(255,255,255,.18);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.15),
+                    rgba(255,255,255,.07)
+                );
+
+            border: 1px solid rgba(255,255,255,.2);
+
             backdrop-filter: blur(15px);
+
+            box-shadow:
+                0 25px 60px rgba(0,0,0,.12);
         }
 
-        .contact-box p {
-            margin: 12px 0;
-            font-size: 18px;
+        .contact-line {
+            margin: 15px 0;
+
+            font-size: 19px;
         }
 
-        .contact-box a {
-            color: white;
+        .contact-line a {
             text-decoration: none;
         }
 
-        .contact-box a:hover {
+        .contact-line a:hover {
             text-decoration: underline;
         }
 
-        /* ---------------- PATIČKA ---------------- */
+        .contact-label {
+            opacity: .6;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+
+        /* =====================================================
+           PATIČKA
+        ===================================================== */
 
         footer {
             text-align: center;
-            padding: 30px;
+
+            padding: 35px 20px;
+
             border-top: 1px solid rgba(255,255,255,.12);
-            opacity: .65;
-            font-size: 14px;
+
+            opacity: .55;
+
+            font-size: 13px;
         }
 
-        /* ---------------- MOBIL ---------------- */
 
-        @media (max-width: 800px) {
+        /* =====================================================
+           MOBIL
+        ===================================================== */
+
+        @media (max-width: 850px) {
 
             header {
-                padding: 15px 5%;
+                padding: 14px 5%;
             }
 
             nav ul {
-                gap: 12px;
+                gap: 14px;
             }
 
             nav a {
@@ -395,7 +659,7 @@
                 text-align: center;
             }
 
-            .description {
+            .hero-description {
                 margin: auto;
             }
 
@@ -403,105 +667,238 @@
                 justify-content: center;
             }
 
-            .dragon {
-                min-height: 330px;
+            .hero-logo {
+                min-height: 360px;
             }
 
-            .dragon-circle {
-                width: 280px;
-                height: 280px;
-            }
-
-            .dragon-circle::before {
-                font-size: 180px;
-            }
-
-            .dragon-circle::after {
-                width: 340px;
-                left: -30px;
+            .logo-ring {
+                width: 320px;
+                height: 320px;
             }
 
             .services {
                 grid-template-columns: 1fr;
             }
 
-            .section-title {
-                font-size: 38px;
+            section:not(.hero) {
+                padding: 85px 6%;
+            }
+
+            .wave-1 {
+                left: -550px;
+            }
+
+            .wave-2 {
+                left: -650px;
+            }
+
+            .wave-3 {
+                left: -700px;
+            }
+        }
+
+
+        @media (max-width: 520px) {
+
+            nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav ul {
+                gap: 16px;
+            }
+
+            .hero {
+                padding-top: 150px;
+            }
+
+            .hero h1 {
+                font-size: 70px;
+            }
+
+            .tagline {
+                font-size: 21px;
+            }
+
+            .hero-logo {
+                min-height: 300px;
+            }
+
+            .logo-ring {
+                width: 270px;
+                height: 270px;
+            }
+
+            .hero-logo img {
+                width: 75%;
             }
 
             .price {
                 padding: 18px;
+            }
+
+            .price-name {
+                font-size: 16px;
+            }
+
+            .price-value {
+                font-size: 16px;
             }
         }
 
     </style>
 </head>
 
+
 <body>
 
+
+<!-- =====================================================
+     DEKORATIVNÍ VLNY
+===================================================== -->
+
+<div class="background-waves">
+
+    <div class="wave wave-1"></div>
+    <div class="wave wave-2"></div>
+    <div class="wave wave-3"></div>
+    <div class="wave wave-4"></div>
+    <div class="wave wave-5"></div>
+
+    <div class="bottom-wave"></div>
+    <div class="bottom-wave-2"></div>
+
+</div>
+
+
+<!-- =====================================================
+     NAVIGACE
+===================================================== -->
+
 <header>
+
     <nav>
-        <div class="logo">
+
+        <div class="nav-logo">
+
             Drak
-            <span>MASÁŽE</span>
+
+            <span class="nav-logo-small">
+                MASÁŽE
+            </span>
+
         </div>
 
+
         <ul>
-            <li><a href="#uvod">Úvod</a></li>
-            <li><a href="#sluzby">Služby</a></li>
-            <li><a href="#cenik">Ceník</a></li>
-            <li><a href="#kontakt">Kontakt</a></li>
+
+            <li>
+                <a href="#uvod">
+                    Úvod
+                </a>
+            </li>
+
+            <li>
+                <a href="#sluzby">
+                    Služby
+                </a>
+            </li>
+
+            <li>
+                <a href="#cenik">
+                    Ceník
+                </a>
+            </li>
+
+            <li>
+                <a href="#kontakt">
+                    Kontakt
+                </a>
+            </li>
+
         </ul>
+
     </nav>
+
 </header>
 
 
-<!-- ÚVOD -->
+<!-- =====================================================
+     ÚVOD
+===================================================== -->
 
 <section class="hero" id="uvod">
 
     <div class="hero-content">
 
+
         <div class="hero-text">
 
-            <div class="small-title">
+            <div class="eyebrow">
                 Drak Masáže
             </div>
 
-            <h1>Masáže</h1>
 
-            <div class="subtitle">
+            <h1>
+                Masáže
+            </h1>
+
+
+            <div class="tagline">
                 rukama i laskavostí
             </div>
 
-            <p class="description">
+
+            <p class="hero-description">
                 Trochu jiný pohled na regeneraci a péči o vaše tělo.
                 Dopřejte si chvíli klidu, uvolnění a péče, kterou si zasloužíte.
             </p>
 
+
             <div class="buttons">
-                <a href="#kontakt" class="button">
+
+                <a
+                    href="#kontakt"
+                    class="button">
                     Objednat se
                 </a>
 
-                <a href="#sluzby" class="button button-outline">
+                <a
+                    href="#sluzby"
+                    class="button button-outline">
                     Nabídka masáží
                 </a>
+
             </div>
 
         </div>
 
 
-        <div class="dragon">
-            <div class="dragon-circle"></div>
+        <!-- LOGO -->
+
+        <div class="hero-logo">
+
+            <div class="logo-ring">
+
+                <img
+                    src="drak-logo-transparent.png"
+                    alt="Logo Drak Masáže">
+
+            </div>
+
         </div>
+
 
     </div>
 
 </section>
 
 
-<!-- SLUŽBY -->
+
+<!-- =====================================================
+     SLUŽBY
+===================================================== -->
 
 <section id="sluzby">
 
@@ -518,34 +915,60 @@
 
         <div class="services">
 
+
             <div class="card">
-                <h3>Relaxační masáž</h3>
+
+                <div class="card-number">
+                    01
+                </div>
+
+                <h3>
+                    Relaxační masáž
+                </h3>
 
                 <p>
                     Jemná masáž zaměřená na uvolnění napětí,
                     odpočinek a celkovou regeneraci těla.
                 </p>
+
             </div>
 
 
             <div class="card">
-                <h3>Regenerační masáž</h3>
+
+                <div class="card-number">
+                    02
+                </div>
+
+                <h3>
+                    Regenerační masáž
+                </h3>
 
                 <p>
-                    Intenzivnější péče pro unavené a namáhané
-                    svaly po práci, sportu nebo každodenní zátěži.
+                    Péče o namáhané svaly a tělo po práci,
+                    sportu nebo každodenní zátěži.
                 </p>
+
             </div>
 
 
             <div class="card">
-                <h3>Masáž na míru</h3>
+
+                <div class="card-number">
+                    03
+                </div>
+
+                <h3>
+                    Masáž na míru
+                </h3>
 
                 <p>
                     Každé tělo je jiné. Společně vybereme
-                    způsob péče, který bude nejlépe vyhovovat právě vám.
+                    způsob péče podle vašich potřeb.
                 </p>
+
             </div>
+
 
         </div>
 
@@ -554,7 +977,10 @@
 </section>
 
 
-<!-- CENÍK -->
+
+<!-- =====================================================
+     CENÍK
+===================================================== -->
 
 <section id="cenik">
 
@@ -571,7 +997,9 @@
 
         <div class="price-list">
 
+
             <div class="price">
+
                 <span class="price-name">
                     Masáž 30 minut
                 </span>
@@ -579,10 +1007,12 @@
                 <span class="price-value">
                     XXX Kč
                 </span>
+
             </div>
 
 
             <div class="price">
+
                 <span class="price-name">
                     Masáž 60 minut
                 </span>
@@ -590,10 +1020,12 @@
                 <span class="price-value">
                     XXX Kč
                 </span>
+
             </div>
 
 
             <div class="price">
+
                 <span class="price-name">
                     Masáž 90 minut
                 </span>
@@ -601,7 +1033,9 @@
                 <span class="price-value">
                     XXX Kč
                 </span>
+
             </div>
+
 
         </div>
 
@@ -610,15 +1044,22 @@
 </section>
 
 
-<!-- KONTAKT -->
 
-<section class="contact" id="kontakt">
+<!-- =====================================================
+     KONTAKT
+===================================================== -->
+
+<section
+    class="contact"
+    id="kontakt">
 
     <div class="section-inner">
+
 
         <h2 class="section-title">
             Objednejte se
         </h2>
+
 
         <p class="section-subtitle">
             Budu se na vás těšit
@@ -627,23 +1068,43 @@
 
         <div class="contact-box">
 
-            <p>
-                📧
+
+            <div class="contact-line">
+
+                <div class="contact-label">
+                    E-mail
+                </div>
+
                 <a href="mailto:drak-masaze@seznam.cz">
                     drak-masaze@seznam.cz
                 </a>
-            </p>
 
-            <p>
-                ☎
+            </div>
+
+
+            <div class="contact-line">
+
+                <div class="contact-label">
+                    Telefon
+                </div>
+
                 <a href="tel:+420739846091">
                     739 846 091
                 </a>
-            </p>
 
-            <p>
-                IČO: 19502150
-            </p>
+            </div>
+
+
+            <div class="contact-line">
+
+                <div class="contact-label">
+                    IČO
+                </div>
+
+                19502150
+
+            </div>
+
 
         </div>
 
@@ -652,8 +1113,15 @@
 </section>
 
 
+
+<!-- =====================================================
+     PATIČKA
+===================================================== -->
+
 <footer>
+
     © 2026 Drak Masáže
+
 </footer>
 
 
